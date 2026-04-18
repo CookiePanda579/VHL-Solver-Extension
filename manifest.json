@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "VHL Solver",
+  "version": "1.0.0",
+  "description": "Automatically solve VHL word-input problems",
+  "permissions": [
+    "scripting",
+    "activeTab",
+    "storage"
+  ],
+  "host_permissions": [
+    "*://vhlcentral.com/*",
+    "*://*.vhlcentral.com/*",
+    "*://*.vhlcampus.com/*",
+    "*://openrouter.ai/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "VHL Solver"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://vhlcentral.com/*", "*://*.vhlcentral.com/*", "*://*.vhlcampus.com/*"],
+      "js": ["content-script.js"],
+      "run_at": "document_end"
+    }
+  ]
+}
